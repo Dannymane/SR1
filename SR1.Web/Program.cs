@@ -1,6 +1,12 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SR1.Web.Data;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using SR1.DAL.EF;
+using SR1.Model.DataModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +16,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<Role>()
+                .AddRoleManager<RoleManager<Role>>()
+                .AddUserManager<UserManager<User>>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddTransient(typeof(ILogger), typeof(Logger<Program>));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -23,7 +34,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }

@@ -13,12 +13,13 @@ namespace SR1.Model.DataModels
       public virtual Parent? Parent { get; set; }
       public int? ParentId { get; set; }
       //In this case, the student can be assigned to existing group in Groups or null
-      public Group? Group { get; set; }
+      public virtual Group? Group { get; set; }
       public int? GroupId { get; set; }
 
       //Same, but null not allowed, must be assigned 
       //public Group Group { get; set; }
       //public int GroupId { get; set; }
+      //             what about strings and reference types?
       public IDictionary<string, List<GradeScale>> GradesPerSubject
       {
          get

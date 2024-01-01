@@ -12,8 +12,8 @@ namespace SR1.Model.DataModels
       public string Name { get; set; }
       // if Group will be created without Students, the Students will be null or, in this case - new List<Student>()
       // anyway EF will override student list after adding students to database (as students of group of course)
-      public IList<Student> Students { get; set; } = new List<Student>(); 
-      public IList<SubjectGroup> SubjectGroups { get; set; } = new List<SubjectGroup>();
+      public virtual IList<Student> Students { get; set; } = new List<Student>(); 
+      public virtual IList<SubjectGroup> SubjectGroups { get; set; } = new List<SubjectGroup>();
 
    }
 }

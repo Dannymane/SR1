@@ -9,6 +9,6 @@ namespace SR1.Model.DataModels
    public class Teacher : User
    {
       public string Title { get; set; } = "";
-      public IList<Subject> Subjects { get; set; } = new List<Subject>();
+      public virtual IList<Subject> Subjects { get; set; } = new List<Subject>();
    }
 }
