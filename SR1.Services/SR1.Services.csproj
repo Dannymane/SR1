@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\SR1.Model\SR1.Model.csproj" />
+    <ProjectReference Include="..\SR1.ViewModels\SR1.ViewModels.csproj" />
+    <ProjectReference Include="..\SR1.DAL\SR1.DAL.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
